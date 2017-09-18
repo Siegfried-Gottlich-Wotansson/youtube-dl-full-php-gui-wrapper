@@ -24,16 +24,18 @@ if (ALLOWED_REFERRER !== ''
 // Set maximum script execution time in seconds (0 means no limit)
 set_time_limit(0);
 
-if (!isset($_GET['f']) || empty($_GET['f'])) {
+$requested_file = $_GET['f'];
+
+if (!isset($requested_file) || empty($requested_file)) {
   die("Please specify file name for download.");
 }
 
 // Nullbyte hack fix
-if (strpos($_GET['f'], "\0") !== FALSE) die('');
+if (strpos($requested_file, "\0") !== FALSE) die('');
 
 // Get real file name.
 // Remove any path info to avoid hacking by adding relative path, etc.
-$fname = basename($_GET['f']);
+$fname = basename($requested_file);
 
 // Check if the file exists
 // Check in subfolders too
@@ -122,18 +124,27 @@ header("Content-Length: " . $fsize);
 
 // download
 // @readfile($file_path);
-$file = @fopen($file_path,"rb");
-if ($file) {
-  while(!feof($file)) {
-    print(fread($file, 1024*8));
-    flush();
-    if (connection_status()!=0) {
-      @fclose($file);
-      die();
+
+$download_rate = 1000;
+// flush content
+    flush();    
+    // open file stream
+    $file = fopen($file_path, "rb");    
+    while(!feof($file)) {
+ 
+        // send the current file part to the browser
+        print fread($file, round($download_rate * 1024));    
+ 
+        // flush the content to the browser
+        flush();
+ 
+        // sleep one second
+        sleep(1);    
     }
-  }
-  @fclose($file);
-}
+ 
+    // close file stream
+    fclose($file);
+// end
 
 // log downloads
 if (!LOG_DOWNLOADS) die();
