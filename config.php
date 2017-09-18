@@ -8,12 +8,15 @@ error_reporting(E_ALL);
 require __DIR__ . '/vendor/autoload.php';
 use Medoo\Medoo;
 
+define("TITLE", "Free Youtube to MP3 Downloader in one page with direct link!");	// choose a title for main page
+define("CONTACT_EMAIL", "p.ionut196@gmail.com");	// choose a title for main page
+
 define("APP_NAME", "Music Server");					// choose a name
 define("APP_URL", "www.music-server.ml");			// website url, no slash
 define("APP_LOCATION", "/var/www/html");			// where is this script installed? must end without slash " / "
 define("APP_DEVELOPER", "p.ionut196@gmail.com");	// your email address
 define("APP_TABLE_NAME", "fisiere");				// mysql table name
-define("APP_VERSION", "v0.5 ALPHA");				// version
+define("APP_VERSION", "v0.6 ALPHA");				// version
 define("ANALYTICS_ID", "UA-106314635-1");			// Google Analytics ID
 
 define("SQL_USER", "root");							// mysql username
@@ -28,4 +31,14 @@ $database = new Medoo([
     'username' => SQL_USER,
     'password' => SQL_PASS
 ]);
+
+function latest_5() {
+	$data = null;
+	$dbquery = $GLOBALS['database']->select(APP_TABLE_NAME, ["timestamp","locatie"], ["ORDER" => ["timestamp" => "DESC"], "LIMIT" => 5]);
+	foreach($dbquery as $fdata)
+	{
+		$data.= '<div class="col-xs-12 col-md-12">' . $fdata["locatie"] . '</div>';
+	}
+	return $data;
+}
 ?>

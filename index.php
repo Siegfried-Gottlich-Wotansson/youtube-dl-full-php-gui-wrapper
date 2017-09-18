@@ -7,8 +7,8 @@ require __DIR__ . '/config.php';
   <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <meta name="description" content="When you choose our YouTube to mp3 converter you get a service that is fully compatible with all modern browsers.Download YouTube videosfree of charge, legally and safely!Download from YouTube in MP3 ! Free and fast with direct link! Android APK Application Also avaiable! PEGGO Alternative">
-    <title>Free Youtube to MP3 Downloader in one page with direct link!</title>
+    <meta name="description" content="When you choose our YouTube to mp3 converter you get a service that is fully compatible with all modern browsers.Download YouTube videos free of charge, legally and safely!Download from YouTube in MP3 ! Free and fast with direct link! Android APK Application Also avaiable! PEGGO Alternative">
+    <title><?=TITLE?></title>
 	<meta property="og:url" content="http://<?=APP_URL?><?=$_SERVER['REQUEST_URI']?>" />
 	<meta property="og:image" content="http://<?=APP_URL?>/img/screen.jpg " />
     <!-- Bootstrap core CSS -->
@@ -28,7 +28,7 @@ require __DIR__ . '/config.php';
 	  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
 	  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
 
-	  ga('create', 'UA-106314635-1', 'auto');
+	  ga('create', '<?=ANALYTICS_ID?>', 'auto');
 	  ga('send', 'pageview');
 
 	</script>
@@ -97,13 +97,7 @@ require __DIR__ . '/config.php';
     <div class="call-to-action bg-dark">
       <div class="container text-left">
         <h2>Last 5 Downloaded files</h2>
-		<?php
-			$dbquery = $database->select(APP_TABLE_NAME, ["timestamp","locatie"], ["ORDER" => ["timestamp" => "DESC"], "LIMIT" => 5]);
-			foreach($dbquery as $data)
-			{
-				echo '<div class="col-xs-12 col-md-12">' . $data["locatie"] . '</div>';
-			}
-		?>
+		<?=latest_5()?>
 		
 		<div class="col-xs-12 col-md-12"></div>
       </div>
@@ -128,7 +122,7 @@ require __DIR__ . '/config.php';
           <div class="col-lg-4 mr-auto text-center">
             <i class="fa fa-envelope-o fa-3x sr-contact"></i>
             <p>
-              <a href="mailto:p.ionut196@gmail.com">p.ionut196@gmail.com</a>
+              <a href="mailto:<?=CONTACT_EMAIL?>"><?=CONTACT_EMAIL?></a>
             </p>
           </div>
 		  <div class="col-lg-4 mr-auto text-center">
@@ -141,7 +135,7 @@ require __DIR__ . '/config.php';
 		  <div class="col-lg-4 mr-auto text-center">
             <i class="fa fa-arrow-up fa-3x sr-contact"></i>
             <p>
-              <a href="#page-top">YT-Downloader</a>
+              <a href="/">YT-Downloader</a>
             </p>
           </div>
 		  <div class="col-lg-4 mr-auto text-center">
