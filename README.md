@@ -1,4 +1,4 @@
-## Installing on Ubuntu 16.04 64bit
+## Installing on fresh Ubuntu 16.04
 
 - cd /var/www
 - apt-get update
@@ -14,3 +14,14 @@
 - rm -rf /var/www/html/index.html
 - cd /var/www/html
 - composer update
+
+
+## Contribute
+
+Feel free to add your own templates, fix bugs or improve the docs. Any kind of help is appreciated! If you any kind of changes to an existing template, please commit them as new templates.
+
+<br>
+
+> [music-server.ml](http://www.music-server.ml) &nbsp;&middot;&nbsp;
+> GitHub [@salomonelli](https://github.com/pionut196) &nbsp;&middot;&nbsp;
+> Facebook [@p.ionut196](https://facebook.com/p.ionut196)

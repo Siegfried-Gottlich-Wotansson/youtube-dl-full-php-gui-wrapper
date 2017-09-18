@@ -176,7 +176,6 @@ require __DIR__ . '/config.php';
     <!-- Plugin JavaScript -->
     <script src="vendor/jquery-easing/jquery.easing.min.js"></script>
     <script src="vendor/scrollreveal/scrollreveal.min.js"></script>
-	<script src="https://cdn.onesignal.com/sdks/OneSignalSDK.js" async='async'></script>
 
     <!-- Custom scripts for this template -->
     <script src="js/function.js"></script>
