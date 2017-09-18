@@ -1,0 +1,44 @@
+---------------------------------------------
+Android Changelog:
+05/09/2017 - V0.1 ALPHA
+	- First build
+
+---------------------------------------------
+Windows Phone Changelog:
+12/09/2017 - V0.1 ALPHA
+	- First build
+
+---------------------------------------------
+Google Chrome extension Changelog:
+05/09/2017 - V0.1 ALPHA
+	- First build
+10/09/2017
+	- Not working anymore: read /chrome/readme.txt
+
+---------------------------------------------
+SERVER API:
+05/09/2017 - v0.1 ALPHA
+	- First build
+08/09/2017 - v0.2 ALPHA
+	- Improved /js/functions.js
+	- Improved api.php
+	- Switch from MySQL to MariaDB
+	- Implementing MedooDB
+	- Major UI improvement
+09/08/2017 - v0.3 ALPHA
+	- Removed Scrollbar
+	- Adding HOTLINK protection
+	- Added Google Analytics
+	- Added API Version behind logo
+12/09/2017 - v0.04 ALPHA
+	- Added Facebook meta-tags in index.php
+	- Scrollbar re-added :D
+	- Latest 5 files on Homepage
+	- Support for multiple download
+	- Added Footer
+	- Improved /js/functions.js
+	- Upload source to GIT
+14/09/2017 - v0.05 ALPHA
+	- Improved compatiblility
+	- Added 'debugger' code in api.php
+---------------------------------------------

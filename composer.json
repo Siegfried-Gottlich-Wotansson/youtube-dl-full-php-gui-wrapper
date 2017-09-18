@@ -1,0 +1,6 @@
+{
+    "require": {
+        "norkunas/youtube-dl-php": "^0.3.3",
+        "catfan/Medoo": "^1.4"
+    }
+}

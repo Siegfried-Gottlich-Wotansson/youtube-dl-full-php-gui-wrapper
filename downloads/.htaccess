@@ -1,0 +1,4 @@
+RewriteEngine On
+RewriteRule ^([^/]*)\$ ?f=$1 [L]
+
+AddType application/octet-stream mp3
