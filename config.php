@@ -18,6 +18,7 @@ define("APP_DEVELOPER", "p.ionut196@gmail.com");	// your email address
 define("APP_TABLE_NAME", "fisiere");				// mysql table name
 define("APP_VERSION", "v0.6 ALPHA");				// version
 define("ANALYTICS_ID", "UA-106314635-1");			// Google Analytics ID
+define("ONESIGNAL_ID", "9bbd3dc2-308d-4e8c-8670-f69c110a3b9e");			// OneSignal app ID
 
 define("SQL_USER", "root");							// mysql username
 define("SQL_PASS", "youtubemp3");					// mysql password

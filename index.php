@@ -18,8 +18,20 @@ require __DIR__ . '/config.php';
     <link href="vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
     
     <!-- Plugin CSS -->
-    <link href="vendor/magnific-popup/magnific-popup.css" rel="stylesheet">
-
+	<script src="https://cdn.onesignal.com/sdks/OneSignalSDK.js" async='async'></script>
+	<script>
+		var OneSignal = window.OneSignal || [];
+		OneSignal.push(["init", {
+		  appId: "<?=ONESIGNAL_ID?>",
+		  autoRegister: true, /* Set to true to automatically prompt visitors */
+		  httpPermissionRequest: {
+			enable: true
+		  },
+		  notifyButton: {
+			  enable: true /* Set to false to hide */
+		  }
+		}]);
+	</script>
     <!-- Custom styles for this template -->
     <link href="css/style.css" rel="stylesheet">
 	<script>
@@ -164,7 +176,7 @@ require __DIR__ . '/config.php';
     <!-- Plugin JavaScript -->
     <script src="vendor/jquery-easing/jquery.easing.min.js"></script>
     <script src="vendor/scrollreveal/scrollreveal.min.js"></script>
-    <script src="vendor/magnific-popup/jquery.magnific-popup.min.js"></script>
+	<script src="https://cdn.onesignal.com/sdks/OneSignalSDK.js" async='async'></script>
 
     <!-- Custom scripts for this template -->
     <script src="js/function.js"></script>
