@@ -9,6 +9,8 @@ require __DIR__ . '/config.php';
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="When you choose our YouTube to mp3 converter you get a service that is fully compatible with all modern browsers.Download YouTube videos free of charge, legally and safely!Download from YouTube in MP3 ! Free and fast with direct link! Android APK Application Also avaiable! PEGGO Alternative">
     <title><?=TITLE?></title>
+	<meta property="og:title" content="<?=TITLE?>">
+	<meta property="og:type" content="website">
 	<meta property="og:url" content="http://<?=APP_URL?><?=$_SERVER['REQUEST_URI']?>" />
 	<meta property="og:image" content="http://<?=APP_URL?>/img/screen.jpg " />
     <!-- Bootstrap core CSS -->
@@ -18,20 +20,7 @@ require __DIR__ . '/config.php';
     <link href="vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
     
     <!-- Plugin CSS -->
-	<script src="https://cdn.onesignal.com/sdks/OneSignalSDK.js" async='async'></script>
-	<script>
-		var OneSignal = window.OneSignal || [];
-		OneSignal.push(["init", {
-		  appId: "<?=ONESIGNAL_ID?>",
-		  autoRegister: true, /* Set to true to automatically prompt visitors */
-		  httpPermissionRequest: {
-			enable: true
-		  },
-		  notifyButton: {
-			  enable: true /* Set to false to hide */
-		  }
-		}]);
-	</script>
+	
     <!-- Custom styles for this template -->
     <link href="css/style.css" rel="stylesheet">
 	<script>
@@ -107,11 +96,20 @@ require __DIR__ . '/config.php';
     
 
     <div class="call-to-action bg-dark">
+	  <div class="container text-left">
+        <h3>About Music Server</h3>
+		<p>Convert video from YouTube into Hight Quality MP3 ( 256kbps )</p>
+		<p>When you choose our YouTube to mp3 converter you get a service that is fully compatible with all modern browsers.Download YouTube videos free of charge, legally and safely!Download from YouTube in MP3 ! Free and fast with direct link!</p>
+		<ul>
+			<li>1MB/s Download speed limit</li>
+			<li>No time limit - Convert a video even if is 3 hours longer</li>
+			<li>Direct Link & No ads</li>
+			<li>Hight Quality ( 256kb/s ) MP3</li>
+		</ul>
+	  </div>
       <div class="container text-left">
-        <h2>Last 5 Downloaded files</h2>
+        <h3>Last 5 Downloaded files</h3>
 		<?=latest_5()?>
-		
-		<div class="col-xs-12 col-md-12"></div>
       </div>
     </div>
 
@@ -172,9 +170,23 @@ require __DIR__ . '/config.php';
     <script src="vendor/jquery/jquery.min.js"></script>
 
     <!-- Plugin JavaScript -->
-
+	<script src="https://cdn.onesignal.com/sdks/OneSignalSDK.js" async='async'></script>
+	
     <!-- Custom scripts for this template -->
     <script src="js/function.js"></script>
+	<script>
+		var OneSignal = window.OneSignal || [];
+		OneSignal.push(["init", {
+		  appId: "<?=ONESIGNAL_ID?>",
+		  autoRegister: true, /* Set to true to automatically prompt visitors */
+		  httpPermissionRequest: {
+			enable: true
+		  },
+		  notifyButton: {
+			  enable: true /* Set to false to hide */
+		  }
+		}]);
+	</script>
 
   </body>
 </html>

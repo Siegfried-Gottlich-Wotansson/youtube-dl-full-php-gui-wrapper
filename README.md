@@ -14,6 +14,8 @@
 - rm -rf /var/www/html/index.html
 - cd /var/www/html
 - composer update
+- a2enmod rewrite
+- service apache2 restart
 
 
 ## Contribute

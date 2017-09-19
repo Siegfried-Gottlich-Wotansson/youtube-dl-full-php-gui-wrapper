@@ -49,12 +49,11 @@
 	// end youtube downloader
 	
 	// about template now
-
-  "use strict"; // Start of use strict
-  // Closes responsive menu when a scroll trigger link is clicked
-  $('.js-scroll-trigger').click(function() {
-    $('.navbar-collapse').collapse('hide');
-  });
+	"use strict"; // Start of use strict
+	// Closes responsive menu when a scroll trigger link is clicked
+		$('.js-scroll-trigger').click(function() {
+	$('.navbar-collapse').collapse('hide');
+	});
 
 
   // Collapse the navbar when page is scrolled
