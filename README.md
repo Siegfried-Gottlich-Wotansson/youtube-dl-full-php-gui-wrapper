@@ -16,7 +16,7 @@
 - composer update
 - a2enmod rewrite
 - service apache2 restart
-- # Run youtube-dl https://www.youtube.com/watch?v=Rz-ZdCEHbao  for testing -> must run it without errors / warnings 
+- ## Run "youtube-dl https://www.youtube.com/watch?v=Rz-ZdCEHbao" for testing -> must run it without errors / warnings 
 
 ## Contribute
 
