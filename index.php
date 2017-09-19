@@ -105,6 +105,8 @@ require __DIR__ . '/config.php';
 			<li>No time limit - Convert a video even if is 3 hours longer</li>
 			<li>Direct Link & No ads</li>
 			<li>Hight Quality ( 256kb/s ) MP3</li>
+			<li>Open Source</li>
+			<li>Free :)</li>
 		</ul>
 	  </div>
       <div class="container text-left">

@@ -16,7 +16,8 @@
 				$( "#loading" ).hide('fast');
 				$( "#statuslabel" ).text('Just paste your song link here!');
                 var slink = data['songinfo']['fisier'];
-				$( "#dlready" ).html('<a class="btn btn-default btn-xl text-center col-xs-12" id="done" href="/downloads/?f='+ encodeURIComponent(slink)  +'">Download '+ slink  +'</a>'); // right here
+                var size  = data['songinfo']['size'];
+				$( "#dlready" ).html('<a class="btn wide btn-default" id="done" href="/downloads/?f='+ encodeURIComponent(slink)  +'">Download '+ slink  +'<br><small>Size: '+size+'</small></a>'); // right here
             },
             error: function (result) { //if something is wrong is showing an error
                 $( "#statuslabel" ).text('Hops! Try again! Just paste your song link here!');

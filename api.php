@@ -36,8 +36,15 @@ if (!($link = filter_input(INPUT_POST, 'download', FILTER_SANITIZE_STRING))) {
 		$locatiemp3 = $dbquery[0]["locatie"];
 	}
 
-	$sinfo = array('songinfo' => array('id' => $youtube_id, 'fisier' => $locatiemp3));
+	$sinfo = array('songinfo' => array('id' => $youtube_id, 'fisier' => $locatiemp3, 'size' => human_filesize($locatiemp3)));
 	echo json_encode($sinfo);
 	die();
+}
+
+function human_filesize($file, $decimals = 2) {
+	$bytes = @filesize("downloads/".$file);
+	$sz = 'BKMGTP';
+	$factor = floor((strlen($bytes) - 1) / 3);
+	return sprintf("%.{$decimals}f", $bytes / pow(1024, $factor)) . @$sz[$factor];
 }
 ?>
