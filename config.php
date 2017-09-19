@@ -35,10 +35,10 @@ $database = new Medoo([
 
 function latest_5() {
 	$data = null;
-	$dbquery = $GLOBALS['database']->select(APP_TABLE_NAME, ["timestamp","locatie"], ["ORDER" => ["timestamp" => "DESC"], "LIMIT" => 5]);
+	$dbquery = $GLOBALS['database']->select(APP_TABLE_NAME, ["externalid","locatie"], ["ORDER" => ["timestamp" => "DESC"], "LIMIT" => 5]);
 	foreach($dbquery as $fdata)
 	{
-		$data.= '<div class="col-xs-12 col-md-12">' . $fdata["locatie"] . '</div>';
+		$data.= '<div class="col-xs-12 col-md-12"><a href="https://www.youtube.com/watch?v='.$fdata["externalid"].'" target="_blank">'.$fdata["locatie"].'</a></div>';
 	}
 	return $data;
 }
