@@ -172,7 +172,7 @@ require __DIR__ . '/config.php';
     <script src="vendor/jquery/jquery.min.js"></script>
 
     <!-- Plugin JavaScript -->
-	<script src="https://cdn.onesignal.com/sdks/OneSignalSDK.js" async='async'></script>
+	<script async src="https://cdn.onesignal.com/sdks/OneSignalSDK.js"></script>
 	
     <!-- Custom scripts for this template -->
     <script src="js/function.js"></script>
