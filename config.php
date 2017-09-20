@@ -8,7 +8,7 @@ error_reporting(E_ALL);
 require __DIR__ . '/vendor/autoload.php';
 use Medoo\Medoo;
 
-define("TITLE", "Free Youtube to MP3 Downloader in one page with direct link!");	// choose a title for main page
+define("TITLE", "Free Youtube to MP3 converter / Downloader in one page with direct link!");	// choose a title for main page
 define("CONTACT_EMAIL", "p.ionut196@gmail.com");	// choose a title for main page
 
 define("APP_NAME", "Music Server");					// choose a name
@@ -38,7 +38,9 @@ function latest_5() {
 	$dbquery = $GLOBALS['database']->select(APP_TABLE_NAME, ["externalid","locatie"], ["ORDER" => ["timestamp" => "DESC"], "LIMIT" => 5]);
 	foreach($dbquery as $fdata)
 	{
-		$data.= '<div class="col-xs-12 col-md-12"><a href="https://www.youtube.com/watch?v='.$fdata["externalid"].'" target="_blank">'.$fdata["locatie"].'</a></div>';
+		$youtubeURL 	= 'https://www.youtube.com/watch?v='.$fdata["externalid"];
+		$file_location	= str_replace(".mp3","",$fdata["locatie"]);
+		$data.= '<div class="col-xs-12 col-md-12"><a class="fa fa-refresh" aria-hidden="true" ytlink="'.$youtubeURL.'" title="Convert '.$file_location.' again"></a> - <a title="Watch it on YouTube" href="'.$youtubeURL.'" target="_blank"><i class="fa fa-youtube" aria-hidden="true"></i> '.$file_location.'</a></div>';
 	}
 	return $data;
 }

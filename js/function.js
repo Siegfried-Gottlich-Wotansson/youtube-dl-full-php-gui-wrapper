@@ -4,7 +4,7 @@
 	$( "input" ).click(function() {
 		$("input").val('');
 	});
-	$( "#dldsong" ).click(function() { // action to do when you press " download it"
+	$( "#dldsong" ).click(function() {
 		hide_download_input();
 		$.ajax({ // now make a " request " to server ( here is sending your link to "api.php" file who will do the rest of things
 			
