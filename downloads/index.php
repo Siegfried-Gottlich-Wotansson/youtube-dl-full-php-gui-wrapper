@@ -130,26 +130,18 @@ header("Content-Length: " . $fsize);
 // download
 // @readfile($file_path);
 
-$download_rate = 1000;
-// flush content
-    flush();    
-    // open file stream
-    $file = fopen($file_path, "rb");    
-    while(!feof($file)) {
- 
-        // send the current file part to the browser
-        print fread($file, round($download_rate * 1024));    
- 
-        // flush the content to the browser
-        flush();
- 
-        // sleep one second
-        sleep(1);    
+$file = @fopen($file_path,"rb");
+if ($file) {
+  while(!feof($file)) {
+    print(fread($file, 1024*8));
+    flush();
+    if (connection_status()!=0) {
+      @fclose($file);
+      die();
     }
- 
-    // close file stream
-    fclose($file);
-// end
+  }
+  @fclose($file);
+}
 
 // log downloads
 if (!LOG_DOWNLOADS) die();
