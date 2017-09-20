@@ -1,4 +1,6 @@
 <?php
+require __DIR__ . '/../config.php';
+
 define('ALLOWED_REFERRER', $_SERVER['SERVER_NAME']);
 
 // Download folder, i.e. folder where you keep all files for download.
@@ -13,6 +15,18 @@ define('LOG_FILE','downloads.log');
 
 $allowed_ext = array ('mp3' => 'audio/mpeg');
 
+//what you want to download?
+$youtube_id = $_GET['f'];
+
+$dbquery = $database->select(APP_TABLE_NAME, ["externalid","file_name"], ["externalid" => $youtube_id]);
+
+$requested_file = $youtube_id.".mp3";
+
+//set file name
+
+$asfname = $dbquery[0]['file_name'].'.mp3';
+if ($asfname === '') $asfname = 'NoName.mp3';
+
 // If hotlinking not allowed then make hackers think there are some server problems
 if (ALLOWED_REFERRER !== ''
 && (!isset($_SERVER['HTTP_REFERER']) || strpos(strtoupper($_SERVER['HTTP_REFERER']),strtoupper(ALLOWED_REFERRER)) === false)
@@ -24,7 +38,6 @@ if (ALLOWED_REFERRER !== ''
 // Set maximum script execution time in seconds (0 means no limit)
 set_time_limit(0);
 
-$requested_file = $_GET['f'];
 
 if (!isset($requested_file) || empty($requested_file)) {
   die("Please specify file name for download.");
@@ -102,14 +115,6 @@ else {
 // Browser will try to save file with this filename, regardless original filename.
 // You can override it if needed.
 
-if (!isset($_GET['fc']) || empty($_GET['fc'])) {
-  $asfname = $fname;
-}
-else {
-  // remove some bad chars
-  $asfname = str_replace(array('"',"'",'\\','/'), '', $_GET['fc']);
-  if ($asfname === '') $asfname = 'NoName';
-}
 
 // set headers
 header("Pragma: public");

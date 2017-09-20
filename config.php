@@ -35,11 +35,11 @@ $database = new Medoo([
 
 function latest_5() {
 	$data = null;
-	$dbquery = $GLOBALS['database']->select(APP_TABLE_NAME, ["externalid","locatie"], ["ORDER" => ["timestamp" => "DESC"], "LIMIT" => 5]);
+	$dbquery = $GLOBALS['database']->select(APP_TABLE_NAME, ["externalid","file_name"], ["ORDER" => ["timestamp" => "DESC"], "LIMIT" => 5]);
 	foreach($dbquery as $fdata)
 	{
 		$youtubeURL 	= 'https://www.youtube.com/watch?v='.$fdata["externalid"];
-		$file_location	= str_replace(".mp3","",$fdata["locatie"]);
+		$file_location	= $fdata["file_name"];
 		$data.= '<div class="col-xs-12 col-md-12"><a class="fa fa-refresh" href="#page-top" aria-hidden="true" ytlink="'.$youtubeURL.'" title="Convert '.$file_location.' again"></a> - <a title="Watch it on YouTube" href="'.$youtubeURL.'" target="_blank"><i class="fa fa-youtube" aria-hidden="true"></i> '.$file_location.'</a></div>';
 	}
 	return $data;

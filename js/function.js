@@ -22,9 +22,10 @@
             success: function (data) { // now get the response from "api.php" file and show it to you
 				$( "#loading" ).hide('fast');
 				$( "#statuslabel" ).text('Just paste your song link here!');
-                var slink = data['songinfo']['fisier'];
-                var size  = data['songinfo']['size'];
-				$( "#dlready" ).html('<a class="btn wide btn-default" id="done" href="/downloads/'+ encodeURIComponent(slink)  +'">Download '+ slink  +'<br><small>Size: '+size+'</small></a>'); // right here
+                var slinktitle	= data['songinfo']['titlu'];
+                var slink		= data['songinfo']['id'];
+                var size		= data['songinfo']['size'];
+				$( "#dlready" ).html('<a class="btn wide btn-default" id="done" href="/downloads/?f='+ slink +'">Download '+ slinktitle  +'<br><small>Size: '+size+'</small></a>'); // right here
             },
             error: function (result) { //if something is wrong is showing an error
                 $( "#statuslabel" ).text('Hops! Try again! Just paste your song link here!');
