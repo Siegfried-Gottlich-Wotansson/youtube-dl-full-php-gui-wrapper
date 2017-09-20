@@ -4,6 +4,13 @@
 	$( "input" ).click(function() {
 		$("input").val('');
 	});
+	
+	$( ".fa-refresh" ).click(function() {
+		var convertagain = $(this).attr( "ytlink" );
+		$("input").val(convertagain);
+		$("#dldsong").trigger( "click" );
+	});
+	
 	$( "#dldsong" ).click(function() {
 		hide_download_input();
 		$.ajax({ // now make a " request " to server ( here is sending your link to "api.php" file who will do the rest of things

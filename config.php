@@ -40,7 +40,7 @@ function latest_5() {
 	{
 		$youtubeURL 	= 'https://www.youtube.com/watch?v='.$fdata["externalid"];
 		$file_location	= str_replace(".mp3","",$fdata["locatie"]);
-		$data.= '<div class="col-xs-12 col-md-12"><a class="fa fa-refresh" aria-hidden="true" ytlink="'.$youtubeURL.'" title="Convert '.$file_location.' again"></a> - <a title="Watch it on YouTube" href="'.$youtubeURL.'" target="_blank"><i class="fa fa-youtube" aria-hidden="true"></i> '.$file_location.'</a></div>';
+		$data.= '<div class="col-xs-12 col-md-12"><a class="fa fa-refresh" href="#page-top" aria-hidden="true" ytlink="'.$youtubeURL.'" title="Convert '.$file_location.' again"></a> - <a title="Watch it on YouTube" href="'.$youtubeURL.'" target="_blank"><i class="fa fa-youtube" aria-hidden="true"></i> '.$file_location.'</a></div>';
 	}
 	return $data;
 }
