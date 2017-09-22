@@ -19,6 +19,12 @@
             url: "api.php",
             data: { download: $( "#ylink" ).val() },
             dataType: "json",
+			// xhrFields: {
+                // onprogress: function(e) {
+                    // $('#sts').html(e.target.responseText);
+                    
+                // }
+            // },
             success: function (data) { // now get the response from "api.php" file and show it to you
 				$( "#loading" ).hide('fast');
 				$( "#statuslabel" ).text('Just paste your song link here!');

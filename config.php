@@ -20,9 +20,9 @@ define("APP_VERSION", "v0.6 ALPHA");				// version
 define("ANALYTICS_ID", "UA-106314635-1");			// Google Analytics ID
 define("ONESIGNAL_ID", "9bbd3dc2-308d-4e8c-8670-f69c110a3b9e");			// OneSignal app ID
 
-define("SQL_USER", "root");							// mysql username
+define("SQL_USER", "ytapp");						// mysql username
 define("SQL_PASS", "youtubemp3");					// mysql password
-define("SQL_DB", "ytstored");						// mysql database
+define("SQL_DB", "ytapp");							// mysql database
 define("SQL_HOST", "localhost");					// mysql host
 
 $database = new Medoo([

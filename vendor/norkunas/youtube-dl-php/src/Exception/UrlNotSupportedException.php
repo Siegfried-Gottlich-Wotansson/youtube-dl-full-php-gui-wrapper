@@ -2,6 +2,6 @@
 
 namespace YoutubeDl\Exception;
 
-class UrlNotSupportedException extends \RuntimeException
+class UrlNotSupportedException extends YoutubeDlException
 {
 }
