@@ -31,7 +31,7 @@ if ($asfname === '') $asfname = 'NoName.mp3';
 if (ALLOWED_REFERRER !== ''
 && (!isset($_SERVER['HTTP_REFERER']) || strpos(strtoupper($_SERVER['HTTP_REFERER']),strtoupper(ALLOWED_REFERRER)) === false)
 ) {
-  die("Sorry amigo. Go back to <a href='http://wwww.music-server.ml'>Music-Server</a><br>Contact: <a href='mailto:p.ionut196@gmail.com'>p.ionut196@gmail</a>");
+  die();
 }
 
 // Make sure program execution doesn't time out
@@ -40,7 +40,7 @@ set_time_limit(0);
 
 
 if (!isset($requested_file) || empty($requested_file)) {
-  die("Please specify file name for download.");
+  die("well? .");
 }
 
 // Nullbyte hack fix

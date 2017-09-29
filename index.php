@@ -41,16 +41,8 @@ require __DIR__ . '/config.php';
     <nav class="navbar navbar-expand-lg navbar-light fixed-top" id="mainNav">
       <div class="container">
         <a class="navbar-brand js-scroll-trigger" href="#page-top"><?=APP_NAME?></a>
-        <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
-          <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarResponsive">
-          <ul class="navbar-nav ml-auto">
-            <li class="nav-item">
-              <a class="nav-link js-scroll-trigger" href="#contact">Contact</a>
-            </li>
-          </ul>
-        </div>
+        <a class="navbar-item" href="/"><?=APP_VERSION?></a>
+        
       </div>
     </nav>
 
@@ -59,61 +51,51 @@ require __DIR__ . '/config.php';
       <div class="header-content">
         <div class="header-content-inner">
           <h1 id="homeHeading"><?=APP_NAME?></h1>
-		  <small>API Version <?=APP_VERSION?></small>
           <hr>
 		  
           <div class="container">
 			<div class="row">
-			<div class="col-lg-8 mx-auto text-center" id="loading" style="display:none">
-				<div id="fountainG">
-					<div id="fountainG_1" class="fountainG"></div>
-					<div id="fountainG_2" class="fountainG"></div>
-					<div id="fountainG_3" class="fountainG"></div>
-					<div id="fountainG_4" class="fountainG"></div>
-					<div id="fountainG_5" class="fountainG"></div>
-					<div id="fountainG_6" class="fountainG"></div>
-					<div id="fountainG_7" class="fountainG"></div>
-					<div id="fountainG_8" class="fountainG"></div>
-				</div><br/><br/>
-			  </div>
 			  <div class="col-lg-8 mx-auto text-left">
 				<div class="form-group">
-				  <label class="text-faded" for="usr" id="statuslabel">Just paste your song link here!</label>
-				  <input type="text" autocomplete="off" required class="form-control" id="ylink">
+					<div class="form-group has-feedback">
+						<label id="statuslabel" class="control-label">Just paste your song link here!</label>
+						<div class="input-group">
+							<span class="input-group-addon"> <i class="fa fa-youtube"></i></span>
+							<input type="text" class="form-control" id="ylink" placeholder="Example: https://www.youtube.com/watch?v=Vb5pn9Z3t30" />
+							<button class="form-control bossbutton input-group-addon-right" id="bossbutton">Convert</button>
+						</div>
+					</div>
+				</div>					
 				</div>
-				<div class="form-group" id="dlpreg"><button class="btn btn-default btn-xl col-xs-12" id="dldsong">Download it</button></div>
-				<div class="form-group" id="dlready"></div>
 			  </div>
 			</div>
 		  </div>
-		  
-		  
         </div>
       </div>
 	  </section>
     </header>
 
-    
-
-    <div class="call-to-action bg-dark">
-	  <div class="container text-left">
-        <h3>About Music Server</h3>
-		<p>Convert video from YouTube into Hight Quality MP3 ( 256kbps )</p>
-		<p>When you choose our YouTube to mp3 converter you get a service that is fully compatible with all modern browsers.Download YouTube videos free of charge, legally and safely!Download from YouTube in MP3 ! Free and fast with direct link!</p>
-		<ul>
-			<li>1MB/s Download speed limit</li>
-			<li>No time limit - Convert a video even if is 3 hours longer</li>
-			<li>Direct Link & No ads</li>
-			<li>Hight Quality ( 256kb/s ) MP3</li>
-			<li>Open Source</li>
-			<li>Free :)</li>
-		</ul>
-	  </div>
-      <div class="container text-left">
-        <h3>Last 5 Downloaded files</h3>
-		<?=latest_5()?>
-      </div>
-    </div>
+	<div class="call-to-action bg-dark">
+		<div class="container text-left">
+			<h3>Last 5 Downloaded files</h3>
+			<?=latest_5()?>
+		</div>
+	
+	<div class="container text-left">
+		<hr>
+			<h3>About Music Server</h3>
+			<p>Convert video from YouTube into Hight Quality MP3 ( 256kbps )</p>
+			<p>When you choose our YouTube to mp3 converter you get a service that is fully compatible with all modern browsers.Download YouTube videos free of charge, legally and safely!Download from YouTube in MP3 ! Free and fast with direct link!</p>
+			<ul>
+				<li>1MB/s Download speed limit</li>
+				<li>No time limit - Convert a video even if is 3 hours longer</li>
+				<li>Direct Link & No ads</li>
+				<li>Hight Quality ( 256kb/s ) MP3</li>
+				<li>Open Source</li>
+				<li>Free :)</li>
+			</ul>
+		</div>
+	</div>
 
     <section id="contact">
       <div class="container">
@@ -162,9 +144,16 @@ require __DIR__ . '/config.php';
 	
 	<div class="call-to-action bg-dark">
 		<div class="container text-center">
+		  <div class="row">
 			<div class="col-xs-12 col-md-12">No rights reserved!</div>
 			<div class="col-xs-12 col-md-12">No content hosted on this server.</div>
 			<div class="col-xs-12 col-md-12">We do not take any responsibility and we are not liable for any damage caused through use of products or services through this website, be it indirect, special, incidental or consequential damages (including but not limited to damages for loss of business, loss of profits, interruption or the like).</div>
+			<hr>
+			<div class="col-xs-12 col-md-12 text-left">
+				<div class="col-xs-12 col-md-6 col-lg-6"><small>API Version <?=APP_VERSION?></small></div>
+				<div class="col-xs-12 col-md-6 col-lg-6"><small>Popescu Ionut <?=date('Y')?></small></div>
+			</div>
+		  </div>
 		</div>
 	</div>
 

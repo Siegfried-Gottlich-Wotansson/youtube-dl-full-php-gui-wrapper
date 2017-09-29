@@ -49,4 +49,10 @@ SERVER API:
 	- Updated Readme.md
 	- Migrating to Ubuntu 16.04
 	- Added OneSignal / Sitemap / Robots.txt / GitHub link
+
+---------------------------------------------
+29/09/2017 - v1.0 ( Lemon )
+	- New download method
+	- Improved UI
+	- Improved speed
 ---------------------------------------------
