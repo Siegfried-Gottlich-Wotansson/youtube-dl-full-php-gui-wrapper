@@ -1,0 +1,5 @@
+ErrorDocument 404 /404.php
+
+RewriteEngine On
+RewriteCond %{QUERY_STRING} ^v=([^&]+) [NC]
+RewriteRule ^watch/?$ index.php?v=$1 [NC,L,QSA]

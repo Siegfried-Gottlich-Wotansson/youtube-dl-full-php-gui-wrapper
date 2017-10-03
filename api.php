@@ -7,10 +7,11 @@ if (!($link = filter_input(INPUT_POST, 'download', FILTER_SANITIZE_STRING))) {
 	preg_match('%(?:youtube(?:-nocookie)?\.com/(?:[^/]+/.+/|(?:v|e(?:mbed)?)/|.*[?&]v=)|youtu\.be/)([^"&?/ ]{11})%i', $link, $match);
 	$youtube_id = $match[1];
 
-	$dbquery = $database->select(APP_TABLE_NAME, ["externalid","file_name"], ["externalid" => $youtube_id]);
+	$dbquery = $database->select(APP_TABLE_NAME, ["externalid","file_name","timestamp"], ["externalid" => $youtube_id]);
 
 	if(count($dbquery) === 0) {
-		$cmd = 'youtube-dl --extract-audio --audio-format mp3 --audio-quality 0 --no-playlist -o "/var/www/html/downloads/%(id)s.%(ext)s" '.$youtube_id;
+		$cmd = 'youtube-dl --extract-audio --audio-format mp3 --no-playlist -o "/var/www/html/downloads/%(id)s.%(ext)s" '.$youtube_id;
+		// --audio-quality 0
 		set_time_limit(0);
 		$title = url_title('https://m.youtube.com/watch?v='.$youtube_id);
 			// now let`s download it
@@ -33,11 +34,13 @@ if (!($link = filter_input(INPUT_POST, 'download', FILTER_SANITIZE_STRING))) {
 			"file_name"		=> $title
 		]);
 		$new_title = $title;
+		$timestamp = "Right now";
 	} else {
 		$new_title = $dbquery[0]["file_name"];
+		$timestamp = $dbquery[0]["timestamp"];
 	}
 
-	$sinfo = array('songinfo' => array('id' => $youtube_id, 'titlu' => $new_title, 'size' => human_filesize($youtube_id)));
+	$sinfo = array('songinfo' => array('id' => $youtube_id,'addedon' => $timestamp, 'titlu' => $new_title, 'size' => human_filesize($youtube_id)));
 	echo json_encode($sinfo);
 	die();
 }
@@ -80,6 +83,7 @@ function url_title($page_url) {
                   return 'untitled';
             }
             $page_title = str_replace(' - YouTube', '', $page_title[1]);
+            $page_title = str_replace('&amp;', '', $page_title);
             return trim($page_title);
       }
       else

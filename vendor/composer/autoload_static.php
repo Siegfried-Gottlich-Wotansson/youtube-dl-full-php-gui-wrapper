@@ -7,15 +7,6 @@ namespace Composer\Autoload;
 class ComposerStaticInitde9d14d1f8dff53f509b067cc852d7b1
 {
     public static $prefixLengthsPsr4 = array (
-        'Y' => 
-        array (
-            'YoutubeDl\\' => 10,
-        ),
-        'S' => 
-        array (
-            'Symfony\\Component\\Process\\' => 26,
-            'Symfony\\Component\\OptionsResolver\\' => 34,
-        ),
         'M' => 
         array (
             'Medoo\\' => 6,
@@ -23,18 +14,6 @@ class ComposerStaticInitde9d14d1f8dff53f509b067cc852d7b1
     );
 
     public static $prefixDirsPsr4 = array (
-        'YoutubeDl\\' => 
-        array (
-            0 => __DIR__ . '/..' . '/norkunas/youtube-dl-php/src',
-        ),
-        'Symfony\\Component\\Process\\' => 
-        array (
-            0 => __DIR__ . '/..' . '/symfony/process',
-        ),
-        'Symfony\\Component\\OptionsResolver\\' => 
-        array (
-            0 => __DIR__ . '/..' . '/symfony/options-resolver',
-        ),
         'Medoo\\' => 
         array (
             0 => __DIR__ . '/..' . '/catfan/medoo/src',

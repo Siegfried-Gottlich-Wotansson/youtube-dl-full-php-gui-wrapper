@@ -6,8 +6,5 @@ $vendorDir = dirname(dirname(__FILE__));
 $baseDir = dirname($vendorDir);
 
 return array(
-    'YoutubeDl\\' => array($vendorDir . '/norkunas/youtube-dl-php/src'),
-    'Symfony\\Component\\Process\\' => array($vendorDir . '/symfony/process'),
-    'Symfony\\Component\\OptionsResolver\\' => array($vendorDir . '/symfony/options-resolver'),
     'Medoo\\' => array($vendorDir . '/catfan/medoo/src'),
 );
