@@ -1,16 +1,31 @@
 <?php
 require __DIR__ . '/config.php';
 
+if (($api = filter_input(INPUT_POST, 'key', FILTER_SANITIZE_STRING))) {
+	$check_api_key = $database->count("api_keys", ["key" => $api, "referrer" => ALLOWED_REFERRER, "limit[>]" => 0]);
+	if( (int)$check_api_key !== 1 ) {
+		kill_everything("Invalid API Key","Invalid referrer / Invalid API Key / Limit reached");
+	}
+	$data = $database->update("api_keys", ["limit[-]" => 1], ["key" => $api]);
+} else {
+	kill_everything("Missing API Key","You need to include your API Key that match with your domain");
+}
+
+
 if (!($link = filter_input(INPUT_POST, 'download', FILTER_SANITIZE_STRING))) {
-	die();
+	kill_everything("error","hello ?");
 	} else {
 	preg_match('%(?:youtube(?:-nocookie)?\.com/(?:[^/]+/.+/|(?:v|e(?:mbed)?)/|.*[?&]v=)|youtu\.be/)([^"&?/ ]{11})%i', $link, $match);
-	$youtube_id = $match[1];
+	if(isset($match[1])) {
+		$youtube_id = $match[1];
+	} else {
+		kill_everything("error","Invalid URL");
+	}
 
-	$dbquery = $database->select(APP_TABLE_NAME, ["externalid","file_name","timestamp"], ["externalid" => $youtube_id]);
+	$dbquery = $database->select(APP_TABLE_NAME, ["externalid","file_name","timestamp","accesed"], ["externalid" => $youtube_id]);
 
 	if(count($dbquery) === 0) {
-		$cmd = 'youtube-dl --extract-audio --audio-format mp3 --no-playlist -o "/var/www/html/downloads/%(id)s.%(ext)s" '.$youtube_id;
+		$cmd = 'youtube-dl --extract-audio --audio-quality 3 --audio-format mp3 --no-playlist -o "/var/www/html/downloads/%(id)s.%(ext)s" '.$youtube_id;
 		// --audio-quality 0
 		set_time_limit(0);
 		$title = url_title('https://m.youtube.com/watch?v='.$youtube_id);
@@ -33,14 +48,16 @@ if (!($link = filter_input(INPUT_POST, 'download', FILTER_SANITIZE_STRING))) {
 			"externalid"	=> $youtube_id,
 			"file_name"		=> $title
 		]);
-		$new_title = $title;
-		$timestamp = "Right now";
+		$new_title	= $title;
+		$timestamp	= "Right now";
+		$accesed	= 0;
 	} else {
-		$new_title = $dbquery[0]["file_name"];
-		$timestamp = $dbquery[0]["timestamp"];
+		$new_title	= $dbquery[0]["file_name"];
+		$timestamp	= $dbquery[0]["timestamp"];
+		$accesed	= $dbquery[0]["accesed"];
 	}
 
-	$sinfo = array('songinfo' => array('id' => $youtube_id,'addedon' => $timestamp, 'titlu' => $new_title, 'size' => human_filesize($youtube_id)));
+	$sinfo = array('songinfo' => array('id' => $youtube_id,'addedon' => $timestamp, 'titlu' => $new_title, 'size' => human_filesize($youtube_id), 'downloads' => $accesed));
 	echo json_encode($sinfo);
 	die();
 }
@@ -91,5 +108,8 @@ function url_title($page_url) {
             return $page_url;
       }
 }
-
+function kill_everything($title, $message) {
+	header('HTTP/1.1 500 Internal Server Error');
+	die(json_encode(array("error"=>$title, "message" => $message)));
+}
 ?>

@@ -28,6 +28,7 @@
 	});
 	
 	$( "#bossbutton" ).click(function() {
+		$(".alert").remove();
 		if($('.bossbutton').attr('download')) {
 			window.history.pushState('download', '', '/');
 			ga('send', 'pageview');
@@ -43,7 +44,7 @@
 				$("#box_content_history").show('fast');
 			});
 		} else {
-			window.history.pushState('download', 'Download in progress.. Please wait..', '/download?v='+$( "#ylink" ).val());
+			window.history.pushState('download', 'Download in progress.. Please wait..', '/watch?v='+$( "#ylink" ).val());
 			$("input").prop('disabled', true);
 			$("#bossbutton").prop('disabled', true);
 			$( "#bossbutton" ).html('Wait...');
@@ -56,7 +57,10 @@
 			$.ajax({
 				type: "POST",
 				url: "api.php",
-				data: { download: $( "#ylink" ).val() },
+				data: {
+					download: $( "#ylink" ).val(),
+					key: API_KEY
+				},
 				dataType: "json",
 				// xhrFields: {
 					// onprogress: function(e) {
@@ -68,12 +72,14 @@
 					var slink		= data['songinfo']['id'];
 					var size		= data['songinfo']['size'];
 					var addedon		= data['songinfo']['addedon'];
+					var downloads	= data['songinfo']['downloads'];
 					window.history.pushState('download', file_title, '/watch?v='+slink);
 					ga('send', 'pageview', '/watch?v='+slink);
 					ga('send', 'pageview');
 					$('#sinfo_title').html(file_title);
 					$('#sinfo_size').html(size);
 					$('#sinfo_date').html(addedon);
+					$('#sinfo_downloads').html(downloads);
 					$("#box_content_history").hide('fast', function(){
 						$("#box_content_file").show('fast');
 					});
@@ -89,11 +95,12 @@
 					ga('send', 'pageview', '/error/');
 					ga('send', 'pageview');
 					$( "#statuslabel" ).text('Wops! Try again! Just paste your song link here!');
+					$( "#form" ).prepend('<div class="alert alert-danger"><strong>Error: </strong>'+result['responseJSON']['message']+'</div>');
 					$("input").prop('disabled', false);
 					$("#bossbutton").prop('disabled', false);
 					$('.input-group-addon').find('i').removeClass('fa-refresh fa-spin fa-fw');
 					$('.input-group-addon').find('i').addClass('fa-meh-o fa-spin');
-					console.log(result['responseText']);
+					console.log(result);
 					$('#bossbutton').html('<i class="fa fa-refresh" aria-hidden="true" title="Retry"></i>');
 					$("input").val('');
 					document.getElementById('ylink').focus();

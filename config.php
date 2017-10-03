@@ -16,11 +16,14 @@ define("APP_URL", "www.music-server.ml");			// website url, no slash
 define("APP_LOCATION", "/var/www/html");			// where is this script installed? must end without slash " / "
 define("APP_DEVELOPER", "p.ionut196@gmail.com");	// your email address
 define("APP_TABLE_NAME", "files");					// mysql table name
-define("APP_REVISION", "1.1");
-define("APP_REVISION_ICON", "<i class='fa fa-apple fa-spin fa-fw' aria-hidden='true'></i>");
+define("API_KEY", "654cc68c-778d-4cee-8e0d-5dec5357346d");					// mysql table name
+define("APP_REVISION", "1.2");
+define("APP_REVISION_ICON", "");
 define("APP_VERSION", "v".APP_REVISION." ".APP_REVISION_ICON);		// version
 define("ANALYTICS_ID", "UA-106314635-1");							// Google Analytics ID
 define("ONESIGNAL_ID", "9bbd3dc2-308d-4e8c-8670-f69c110a3b9e");		// OneSignal app ID
+define('ALLOWED_REFERRER', $_SERVER['SERVER_NAME']);
+
 
 define("SQL_USER", "root");							// mysql username
 define("SQL_PASS", "youtubemp3");					// mysql password
