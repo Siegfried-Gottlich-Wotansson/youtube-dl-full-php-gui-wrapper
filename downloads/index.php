@@ -1,8 +1,6 @@
 <?php
 require __DIR__ . '/../config.php';
 
-define('ALLOWED_REFERRER', $_SERVER['SERVER_NAME']);
-
 // Download folder, i.e. folder where you keep all files for download.
 // MUST end with slash (i.e. "/" )
 define('BASE_DIR', __DIR__ );
@@ -16,15 +14,17 @@ define('LOG_FILE','downloads.log');
 $allowed_ext = array ('mp3' => 'audio/mpeg');
 
 //what you want to download?
-$youtube_id = $_GET['f'];
+$youtube_id = filter_input(INPUT_GET, 'f', FILTER_SANITIZE_STRING);
 
 $dbquery = $database->select(APP_TABLE_NAME, ["externalid","file_name"], ["externalid" => $youtube_id]);
-
+if(!isset($_GET['embed'])) {
+	$database->update(APP_TABLE_NAME, ["accesed[+]" => 1], ["externalid" => $youtube_id]);
+}
 $requested_file = $youtube_id.".mp3";
 
 //set file name
 
-$asfname = $dbquery[0]['file_name'].'.mp3';
+@$asfname = $dbquery[0]['file_name'].'.mp3';
 if ($asfname === '') $asfname = 'NoName.mp3';
 
 // If hotlinking not allowed then make hackers think there are some server problems

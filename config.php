@@ -10,20 +10,19 @@ use Medoo\Medoo;
 
 define("TITLE", "Free YouTube to MP3 converter / Downloader in one page with direct link!");	// choose a title for main page
 define("CONTACT_EMAIL", "p.ionut196@gmail.com");	// choose a title for main page
-
 define("APP_NAME", "PI<i class='red'>Tube</i>");	// choose a name
+define("HTTP_PROTOCOL", "http");					// http or https ?
 define("APP_URL", "www.music-server.ml");			// website url, no slash
 define("APP_LOCATION", "/var/www/html");			// where is this script installed? must end without slash " / "
 define("APP_DEVELOPER", "p.ionut196@gmail.com");	// your email address
 define("APP_TABLE_NAME", "files");					// mysql table name
-define("API_KEY", "654cc68c-778d-4cee-8e0d-5dec5357346d");					// mysql table name
-define("APP_REVISION", "1.2");
-define("APP_REVISION_ICON", "");
-define("APP_VERSION", "v".APP_REVISION." ".APP_REVISION_ICON);		// version
+define("API_KEY", "654cc68c-778d-4cee-8e0d-5dec5357346d");			// mysql table name
+define("APP_REVISION", "1.2");										// current app version
+define("APP_REVISION_ICON", "");									// put a little icon after the version
+define("APP_VERSION", "v".APP_REVISION." ".APP_REVISION_ICON);		// link revision and icon
 define("ANALYTICS_ID", "UA-106314635-1");							// Google Analytics ID
 define("ONESIGNAL_ID", "9bbd3dc2-308d-4e8c-8670-f69c110a3b9e");		// OneSignal app ID
 define('ALLOWED_REFERRER', $_SERVER['SERVER_NAME']);
-
 
 define("SQL_USER", "root");							// mysql username
 define("SQL_PASS", "youtubemp3");					// mysql password
@@ -45,7 +44,7 @@ function latest_5() {
 	{
 		$youtubeURL 	= $fdata["externalid"];
 		$file_location	= $fdata["file_name"];
-		$data.= '<div class="col-md-12 mx-auto"><a class="fa fa-refresh" href="#page-top" aria-hidden="true" ytid="'.$youtubeURL.'" title="Convert '.$file_location.' again"></a> - <a title="Watch it on YouTube" href="https://www.youtube.com/watch?v='.$youtubeURL.'" target="_blank"><i class="fa fa-youtube" aria-hidden="true"></i> '.$file_location.'</a></div>';
+		$data.= '<div class="col-md-12 mx-auto"><a class="fa fa-refresh" aria-hidden="true" ytid="'.$youtubeURL.'" title="Convert '.$file_location.' again"></a> - <a title="Watch it on YouTube" href="https://www.youtube.com/watch?v='.$youtubeURL.'" target="_blank"><i class="fa fa-youtube" aria-hidden="true"></i> '.$file_location.'</a></div>';
 	}
 	return $data;
 }

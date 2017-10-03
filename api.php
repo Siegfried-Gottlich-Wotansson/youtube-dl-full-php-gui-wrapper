@@ -1,12 +1,12 @@
 <?php
 require __DIR__ . '/config.php';
+define("GET_API", filter_input(INPUT_POST, 'key', FILTER_SANITIZE_STRING));
 
-if (($api = filter_input(INPUT_POST, 'key', FILTER_SANITIZE_STRING))) {
-	$check_api_key = $database->count("api_keys", ["key" => $api, "referrer" => ALLOWED_REFERRER, "limit[>]" => 0]);
+if (($api = GET_API)) {
+	$check_api_key = $database->count("api_keys", ["key" => $api, "referrer" => APP_URL, "limit[>]" => 0]);
 	if( (int)$check_api_key !== 1 ) {
 		kill_everything("Invalid API Key","Invalid referrer / Invalid API Key / Limit reached");
 	}
-	$data = $database->update("api_keys", ["limit[-]" => 1], ["key" => $api]);
 } else {
 	kill_everything("Missing API Key","You need to include your API Key that match with your domain");
 }
@@ -21,7 +21,6 @@ if (!($link = filter_input(INPUT_POST, 'download', FILTER_SANITIZE_STRING))) {
 	} else {
 		kill_everything("error","Invalid URL");
 	}
-
 	$dbquery = $database->select(APP_TABLE_NAME, ["externalid","file_name","timestamp","accesed"], ["externalid" => $youtube_id]);
 
 	if(count($dbquery) === 0) {
@@ -56,7 +55,8 @@ if (!($link = filter_input(INPUT_POST, 'download', FILTER_SANITIZE_STRING))) {
 		$timestamp	= $dbquery[0]["timestamp"];
 		$accesed	= $dbquery[0]["accesed"];
 	}
-
+	
+	$data = $database->update("api_keys", ["limit[-]" => 1], ["key" => GET_API]);
 	$sinfo = array('songinfo' => array('id' => $youtube_id,'addedon' => $timestamp, 'titlu' => $new_title, 'size' => human_filesize($youtube_id), 'downloads' => $accesed));
 	echo json_encode($sinfo);
 	die();

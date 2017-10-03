@@ -53,7 +53,7 @@
     <nav class="navbar navbar-expand-lg navbar-light fixed-top" id="mainNav">
       <div class="container">
         <a class="navbar-brand js-scroll-trigger" href="/"><?=APP_NAME?></a>
-        <a class="navbar-item" id="morecontent" href="#">Show full page</a>
+        <a class="navbar-item" id="morecontent" href="#"><?=APP_VERSION?></a>
         
       </div>
     </nav>
@@ -82,8 +82,11 @@
 								<div class="col-md-12 mx-auto">Size: <b id="sinfo_size"></b></div>
 								<div class="col-md-12 mx-auto">Added on: <b id="sinfo_date"></b></div>
 								<div class="col-md-12 mx-auto">Downloads: <b id="sinfo_downloads"></b></div>
+								<div class="mx-auto">
+									<audio class="col-md-12 mx-auto" controls></audio>
+								</div>
 								<div class="col-md-12 mx-auto"><button class="col-md-12 btn btn-download" id="sinfo_download">Download</button></div>
-								<div class="col-md-3 mx-auto text-center"><small><a href="/">< Go back</a></small></div>
+								<div class="col-md-3 mx-auto text-center"><small><a href="<?=HTTP_PROTOCOL?>://<?=APP_URL?>/">< Go back</a></small></div>
 							</div>
 							<div id="box_content_history" class="">
 								<?=latest_5()?>
@@ -101,7 +104,7 @@
 	  </section>
     </header>
 
-	<div id="content" style="display:none">
+	<div id="content">
 	<div class="call-to-action bg-dark">
 	
 	<div class="container text-left">
