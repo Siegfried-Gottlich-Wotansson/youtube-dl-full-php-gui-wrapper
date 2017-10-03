@@ -1,1 +1,0 @@
-Windows application will be released soon!

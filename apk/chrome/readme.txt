@@ -1,1 +1,0 @@
-It was worked until YouTube changed a lot of thing at the end of August 2017.. so.. Extension will be available soon.
