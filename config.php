@@ -12,12 +12,12 @@ define("TITLE", "Free YouTube to MP3 converter / Downloader in one page with dir
 define("CONTACT_EMAIL", "p.ionut196@gmail.com");	// choose a title for main page
 define("APP_NAME", "PI<i class='red'>Tube</i>");	// choose a name
 define("HTTP_PROTOCOL", "http");					// http or https ?
-define("APP_URL", "www.music-server.ml");			// website url, no slash
+define("APP_URL", "www.pitube.ml");			// website url, no slash
 define("APP_LOCATION", "/var/www/html");			// where is this script installed? must end without slash " / "
 define("APP_DEVELOPER", "p.ionut196@gmail.com");	// your email address
 define("APP_TABLE_NAME", "files");					// mysql table name
 define("API_KEY", "654cc68c-778d-4cee-8e0d-5dec5357346d");			// mysql table name
-define("APP_REVISION", "1.2");										// current app version
+define("APP_REVISION", "1.2.1");										// current app version
 define("APP_REVISION_ICON", "");									// put a little icon after the version
 define("APP_VERSION", "v".APP_REVISION." ".APP_REVISION_ICON);		// link revision and icon
 define("ANALYTICS_ID", "UA-106314635-1");							// Google Analytics ID

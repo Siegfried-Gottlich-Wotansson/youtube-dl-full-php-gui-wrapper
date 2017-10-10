@@ -18,15 +18,8 @@
 	<meta property="og:type" content="website">
 	<meta property="og:url" content="http://<?=APP_URL?><?=$_SERVER['REQUEST_URI']?>" />
 	<meta property="og:image" content="http://<?=APP_URL?>/img/screen.jpg " />
-    <!-- Bootstrap core CSS -->
     <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-
-    <!-- Custom fonts for this template -->
     <link href="vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
-    
-    <!-- Plugin CSS -->
-	
-    <!-- Custom styles for this template -->
     <link href="css/style.css" rel="stylesheet">
 	<script>
 	  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
@@ -110,13 +103,13 @@
 	<div class="container text-left">
 		<hr>
 			<h3>About <?=APP_NAME?></h3>
-			<p>Convert video from YouTube into Hight Quality MP3 ( 256kbps )</p>
+			<p>Convert video from YouTube into High Quality MP3 ( 256kbps )</p>
 			<p>When you choose our YouTube to mp3 converter you get a service that is fully compatible with all modern browsers.Download YouTube videos free of charge, legally and safely!Download from YouTube in MP3 ! Free and fast with direct link!</p>
 			<ul>
-				<li>1MB/s Download speed limit</li>
-				<li>No time limit - Convert a video even if is 3 hours longer</li>
+				<li>No download speed limit</li>
+				<li>No time limit - Convert a video even if is 10 hours longer</li>
 				<li>Direct Link & No ads</li>
-				<li>Hight Quality ( 256kb/s ) MP3</li>
+				<li>High Quality ( 256kb/s ) MP3</li>
 				<li>Open Source</li>
 				<li>Free :)</li>
 			</ul>
@@ -151,7 +144,12 @@
               <a href="/files/">Download Mobile Application<br><small>Android / iOS / Windows / Windows Phone</small></a>
             </p>
           </div>
-		  <div class="col-lg-4 mx-auto text-center"></div>
+		  <div class="col-lg-4 mx-auto text-center">
+			<i class="fa fa-file-code-o fa-3x sr-contact"></i>
+            <p>
+              <a href="mailto:p.ionut196@gmail.com">Get API access</a>
+            </p>
+		  </div>
 		  <div class="col-lg-4 mx-auto text-center">
             <i class="fa fa-arrow-up fa-3x sr-contact"></i>
             <p>

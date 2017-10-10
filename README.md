@@ -24,6 +24,6 @@ Feel free to add your own templates, fix bugs or improve the docs. Any kind of h
 
 <br>
 
-> [music-server.ml](http://www.music-server.ml) &nbsp;&middot;&nbsp;
+> [pitube.ml](http://www.pitube.ml) &nbsp;&middot;&nbsp;
 > GitHub [@pionut196](https://github.com/pionut196) &nbsp;&middot;&nbsp;
 > Facebook [@p.ionut196](https://facebook.com/p.ionut196)

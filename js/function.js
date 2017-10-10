@@ -80,7 +80,8 @@
 					$('#sinfo_size').html(size);
 					$('#sinfo_date').html(addedon);
 					$('#sinfo_downloads').html(downloads);
-					$('audio').append('<source id="audioplayer" src="http://www.music-server.ml/downloads/?f=' + slink + '&embed" type="audio/ogg">');
+					$('#audioplayer').remove();
+					$('audio').append('<source id="audioplayer" src="http://www.pitube.ml/downloads/?f=' + slink + '&embed" type="audio/ogg">');
 					$("#box_content_history").hide('fast', function(){
 						$("#box_content_file").show('fast');
 					});

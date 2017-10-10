@@ -5,27 +5,27 @@
       xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9
             http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd">
 <url>
-  <loc>http://www.music-server.ml/</loc>
+  <loc>http://www.pitube.ml/</loc>
   <changefreq>daily</changefreq>
   <priority>1.00</priority>
 </url>
 <url>
-  <loc>http://www.music-server.ml/files/</loc>
+  <loc>http://www.pitube.ml/files/</loc>
   <changefreq>daily</changefreq>
   <priority>0.80</priority>
 </url>
 <url>
-  <loc>http://www.music-server.ml/files/?dir=Android</loc>
+  <loc>http://www.pitube.ml/files/?dir=Android</loc>
   <changefreq>daily</changefreq>
   <priority>0.64</priority>
 </url>
 <url>
-  <loc>http://www.music-server.ml/files/?dir=www</loc>
+  <loc>http://www.pitube.ml/files/?dir=www</loc>
   <changefreq>daily</changefreq>
   <priority>0.64</priority>
 </url>
 <url>
-  <loc>http://www.music-server.ml/files/Android/readme.txt</loc>
+  <loc>http://www.pitube.ml/files/Android/readme.txt</loc>
   <lastmod>2017-09-22T12:18:25+00:00</lastmod>
   <changefreq>daily</changefreq>
   <priority>0.51</priority>

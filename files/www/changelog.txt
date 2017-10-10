@@ -1,8 +1,0 @@
-29/09/2017 - v1.0 ( Lemon )
-	- First release
-
-02/10/2017 - v1.1
-	- Improved UI
-	- Improved function.js / api.php
-	- Some bugs fixed
-	- Added Google Adsense
