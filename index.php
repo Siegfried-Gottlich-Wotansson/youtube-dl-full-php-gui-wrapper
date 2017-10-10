@@ -1,10 +1,5 @@
 <?php
 	require __DIR__ . '/config.php';
-	if (($link = filter_input(INPUT_GET, 'v', FILTER_SANITIZE_STRING))) {
-		$get_id = "https://www.youtube.com/watch?v=".filter_input(INPUT_GET, 'v', FILTER_SANITIZE_STRING);
-	} else { 
-		$get_id = null;
-	}
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -70,16 +65,17 @@
 							<button class="form-control bossbutton input-group-addon-right" id="bossbutton"><i class="fa fa-arrow-right" aria-hidden="true" title="Convert it"></i></button>
 						</div>
 						<div class="form-group box">
-							<div id="box_content_file" style="display:none" class="">
-								<div class="col-md-12 mx-auto">Title: <b id="sinfo_title"></b></div>
-								<div class="col-md-12 mx-auto">Size: <b id="sinfo_size"></b></div>
-								<div class="col-md-12 mx-auto">Added on: <b id="sinfo_date"></b></div>
-								<div class="col-md-12 mx-auto">Downloads: <b id="sinfo_downloads"></b></div>
-								<div class="mx-auto">
-									<audio class="col-md-12 mx-auto" controls></audio>
-								</div>
-								<div class="col-md-12 mx-auto"><button class="col-md-12 btn btn-download" id="sinfo_download">Download</button></div>
-								<div class="col-md-3 mx-auto text-center"><small><a href="<?=HTTP_PROTOCOL?>://<?=APP_URL?>/">< Go back</a></small></div>
+                                                        <div id="box_search" style="display:none"></div>
+							<div id="box_content_file" style="display:none">
+                                                            <div class="col-md-12 mx-auto">Title: <b id="sinfo_title"></b></div>
+                                                            <div class="col-md-12 mx-auto">Size: <b id="sinfo_size"></b></div>
+                                                            <div class="col-md-12 mx-auto">Added on: <b id="sinfo_date"></b></div>
+                                                            <div class="col-md-12 mx-auto">Downloads: <b id="sinfo_downloads"></b></div>
+                                                            <div class="mx-auto">
+								<audio class="col-md-12 mx-auto" controls></audio>
+                                                            </div>
+                                                            <div class="col-md-12 mx-auto"><button class="col-md-12 btn btn-download" id="sinfo_download">Download</button></div>
+                                                            <div class="col-md-3 mx-auto text-center"><small><a href="<?=HTTP_PROTOCOL?>://<?=APP_URL?>/">< Go back</a></small></div>
 							</div>
 							<div id="box_content_history" class="">
 								<?=latest_5()?>

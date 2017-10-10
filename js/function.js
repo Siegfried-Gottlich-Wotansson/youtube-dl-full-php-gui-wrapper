@@ -1,6 +1,6 @@
 (function($) {
 	$(document).keypress(function (e) {
-		if (e.which == 13) {
+		if (e.which === 13) {
 			$("#bossbutton").trigger( "click" );
 		}
 	});
@@ -17,7 +17,7 @@
 		$( "#content" ).show('fast');
 	});
 	
-	$( ".fa-refresh" ).click(function() {
+        $(document).on("click", ".download", function(){
 		var youtube_url = $(this).attr( "ytid" );
 		window.history.pushState('download', 'Download song', '/watch?v='+youtube_url);
 		ga('send', 'pageview', '/watch?v='+youtube_url);
@@ -29,6 +29,7 @@
 	
 	$( "#bossbutton" ).click(function() {
 		$(".alert").remove();
+                $("#box_search").html('');
 		if($('.bossbutton').attr('download')) {
 			window.history.pushState('download', '', '/');
 			ga('send', 'pageview');
@@ -54,7 +55,10 @@
 			$('.input-group-addon').find('i').addClass('fa-refresh fa-spin fa-fw');
 			if(collapsed)
 			$(this).find('i').toggleClass('fa youtube');
-			$.ajax({
+                    
+                        if ($( "#ylink" ).val().indexOf('youtube.com') > -1)
+                        {
+                            $.ajax({
 				type: "POST",
 				url: "api.php",
 				data: {
@@ -69,9 +73,9 @@
 				// },
 				success: function (data) {
 					var file_title	= data['songinfo']['titlu'];
-					var slink		= data['songinfo']['id'];
-					var size		= data['songinfo']['size'];
-					var addedon		= data['songinfo']['addedon'];
+					var slink	= data['songinfo']['id'];
+					var size	= data['songinfo']['size'];
+					var addedon	= data['songinfo']['addedon'];
 					var downloads	= data['songinfo']['downloads'];
 					window.history.pushState('download', file_title, '/watch?v='+slink);
 					ga('send', 'pageview', '/watch?v='+slink);
@@ -93,21 +97,41 @@
 					$( "#statuslabel" ).text('File "' + file_title.substring(0, 50) + '..." is ready to download :)');
 				},
 				error: function (result) {
-					window.history.pushState('download', "Not found", '/error/');
-					ga('send', 'pageview', '/error/');
-					ga('send', 'pageview');
-					$( "#statuslabel" ).text('Wops! Try again! Just paste your song link here!');
-					$( "#form" ).prepend('<div class="alert alert-danger"><strong>Error: </strong>'+result['responseJSON']['message']+'</div>');
-					$("input").prop('disabled', false);
-					$("#bossbutton").prop('disabled', false);
-					$('.input-group-addon').find('i').removeClass('fa-refresh fa-spin fa-fw');
-					$('.input-group-addon').find('i').addClass('fa-meh-o fa-spin');
-					console.log(result);
-					$('#bossbutton').html('<i class="fa fa-refresh" aria-hidden="true" title="Retry"></i>');
-					$("input").val('');
-					document.getElementById('ylink').focus();
+					error(result['responseJSON']['message']);
 				}
-			});
+                            });
+                        } else {
+                            $( "input" ).prop('disabled', false);
+                            $( "#bossbutton" ).prop('disabled', false);
+                            $( "#bossbutton" ).html('Search');
+                            $( "#statuslabel" ).text('Search result for "'+$( "#ylink" ).val()+'"');
+                            $( "#box_search" ).show('fast', function(){
+                                $( "#box_content_history" ).hide();
+                            });
+                            
+                            $.ajax({
+				type: "POST",
+				url: "api.php",
+				data: {
+					search: $( "#ylink" ).val(),
+					key: API_KEY
+				},
+				dataType: "json",
+				success: function (data) {
+                                    console.log(data);
+                                    var video_id = data[0]['id']['videoId'];
+                                    var title    = data[0]['snippet']['title'];
+                                    var thumb    = data[0]['snippet']['thumbnails']['default']['url'];
+                                    data.forEach(function(result) {
+                                        $( "#box_search" ).append('<a class="download" ytid="'+result['id']['videoId']+'">'+result['snippet']['title']+'</a><br>');
+                                        
+                                    });
+				},
+				error: function (result) {
+					console.error(result);
+				}
+                            });
+                        }
 		}
 	});
 	
@@ -120,6 +144,21 @@
 			$("#mainNav").removeClass("navbar-shrink");
 		}
 	});
+        
+        function error(param) {
+            window.history.pushState('download', "Not found", '/error/');
+            ga('send', 'pageview', '/error/');
+            ga('send', 'pageview');
+            $( "#statuslabel" ).text('Wops! Try again! Just paste your song link here!');
+            $( "#form" ).prepend('<div class="alert alert-danger"><strong>Error: </strong>'+param+'</div>');
+            $("input").prop('disabled', false);
+            $("#bossbutton").prop('disabled', false);
+            $('.input-group-addon').find('i').removeClass('fa-refresh fa-spin fa-fw');
+            $('.input-group-addon').find('i').addClass('fa-meh-o fa-spin');
+            $('#bossbutton').html('<i class="fa fa-refresh" aria-hidden="true" title="Retry"></i>');
+            $("input").val('');
+            document.getElementById('ylink').focus();
+        }
 })(jQuery);
 
 

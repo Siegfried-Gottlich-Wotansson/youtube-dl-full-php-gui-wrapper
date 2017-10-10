@@ -11,10 +11,19 @@ if (($api = GET_API)) {
 	kill_everything("Missing API Key","You need to include your API Key that match with your domain");
 }
 
-
-if (!($link = filter_input(INPUT_POST, 'download', FILTER_SANITIZE_STRING))) {
-	kill_everything("error","hello ?");
-	} else {
+if (($search = filter_input(INPUT_POST, 'search', FILTER_SANITIZE_STRING))) {
+    $ytsettings = array(
+        'key' => YOUTUBE_API_KEY,
+        'referer' => ALLOWED_REFERRER,
+        'type' => 'video',
+        'regionCode' => 'RO',
+        'videoDuration' => 'medium'
+    );
+    $youtube = new Madcoda\Youtube\Youtube($ytsettings);
+    $list = $youtube->search($search, 5);
+    echo json_encode($list);
+}
+if (($link = filter_input(INPUT_POST, 'download', FILTER_SANITIZE_STRING))) {
 	preg_match('%(?:youtube(?:-nocookie)?\.com/(?:[^/]+/.+/|(?:v|e(?:mbed)?)/|.*[?&]v=)|youtu\.be/)([^"&?/ ]{11})%i', $link, $match);
 	if(isset($match[1])) {
 		$youtube_id = $match[1];
@@ -112,4 +121,3 @@ function kill_everything($title, $message) {
 	header('HTTP/1.1 500 Internal Server Error');
 	die(json_encode(array("error"=>$title, "message" => $message)));
 }
-?>

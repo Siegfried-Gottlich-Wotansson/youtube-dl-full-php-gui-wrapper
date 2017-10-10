@@ -17,7 +17,8 @@ define("APP_LOCATION", "/var/www/html");			// where is this script installed? mu
 define("APP_DEVELOPER", "p.ionut196@gmail.com");	// your email address
 define("APP_TABLE_NAME", "files");					// mysql table name
 define("API_KEY", "654cc68c-778d-4cee-8e0d-5dec5357346d");			// mysql table name
-define("APP_REVISION", "1.2.1");										// current app version
+define('YOUTUBE_API_KEY', "AIzaSyA-v28BXnmmkRdyf6beGhRmkjs74AM-Gks");
+define("APP_REVISION", "1.2.2");										// current app version
 define("APP_REVISION_ICON", "");									// put a little icon after the version
 define("APP_VERSION", "v".APP_REVISION." ".APP_REVISION_ICON);		// link revision and icon
 define("ANALYTICS_ID", "UA-106314635-1");							// Google Analytics ID
@@ -37,6 +38,12 @@ $database = new Medoo([
     'password' => SQL_PASS
 ]);
 
+if (($link = filter_input(INPUT_GET, 'v', FILTER_SANITIZE_STRING))) {
+    $get_id = "https://www.youtube.com/watch?v=".filter_input(INPUT_GET, 'v', FILTER_SANITIZE_STRING);
+} else { 
+    $get_id = null;
+}
+
 function latest_5() {
 	$data = null;
 	$dbquery = $GLOBALS['database']->select(APP_TABLE_NAME, ["externalid","file_name"], ["ORDER" => ["timestamp" => "DESC"], "LIMIT" => 5]);
@@ -44,7 +51,7 @@ function latest_5() {
 	{
 		$youtubeURL 	= $fdata["externalid"];
 		$file_location	= $fdata["file_name"];
-		$data.= '<div class="col-md-12 mx-auto"><a class="fa fa-refresh" aria-hidden="true" ytid="'.$youtubeURL.'" title="Convert '.$file_location.' again"></a> - <a title="Watch it on YouTube" href="https://www.youtube.com/watch?v='.$youtubeURL.'" target="_blank"><i class="fa fa-youtube" aria-hidden="true"></i> '.$file_location.'</a></div>';
+		$data.= '<div class="col-md-12 mx-auto"><a class="fa fa-refresh download" aria-hidden="true" ytid="'.$youtubeURL.'" title="Convert '.$file_location.' again"></a> - <a title="Watch it on YouTube" href="https://www.youtube.com/watch?v='.$youtubeURL.'" target="_blank"><i class="fa fa-youtube" aria-hidden="true"></i> '.$file_location.'</a></div>';
 	}
 	return $data;
 }
