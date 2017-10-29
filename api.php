@@ -24,6 +24,7 @@ if (($search = filter_input(INPUT_POST, 'search', FILTER_SANITIZE_STRING))) {
     $list = $youtube->search($search, 5);
     echo json_encode($list);
 }
+
 if (($link = filter_input(INPUT_POST, 'download', FILTER_SANITIZE_STRING))) {
     preg_match('%(?:youtube(?:-nocookie)?\.com/(?:[^/]+/.+/|(?:v|e(?:mbed)?)/|.*[?&]v=)|youtu\.be/)([^"&?/ ]{11})%i', $link, $match);
     if (isset($match[1])) {
@@ -35,7 +36,6 @@ if (($link = filter_input(INPUT_POST, 'download', FILTER_SANITIZE_STRING))) {
 
     if (count($dbquery) === 0) {
         $cmd = 'youtube-dl --extract-audio --audio-quality 3 --audio-format mp3 --no-playlist -o "/var/www/html/downloads/%(id)s.%(ext)s" ' . $youtube_id;
-        // --audio-quality 0
         set_time_limit(0);
         $title = url_title('https://m.youtube.com/watch?v=' . $youtube_id);
         // now let`s download it
@@ -44,8 +44,6 @@ if (($link = filter_input(INPUT_POST, 'download', FILTER_SANITIZE_STRING))) {
             ob_start();
         while (!feof($handle)) {
             $buffer = fgets($handle);
-            // disabled for a moment, under work
-            // echo clean_output($buffer, $youtube_id). "<br />";
             // echo $buffer. "<br />";
             ob_flush();
             flush();
@@ -70,27 +68,6 @@ if (($link = filter_input(INPUT_POST, 'download', FILTER_SANITIZE_STRING))) {
     $sinfo = array('songinfo' => array('id' => $youtube_id, 'addedon' => $timestamp, 'titlu' => $new_title, 'size' => human_filesize($youtube_id), 'downloads' => $accesed));
     echo json_encode($sinfo);
     die();
-}
-
-function clean_output($string, $ytid) {
-    $string = str_replace($ytid, '', $string);
-    $string = str_replace('.mp3', '', $string);
-    $string = str_replace('.mp4', '', $string);
-    $string = str_replace('.webm', '', $string);
-    $string = str_replace('[youtube] :', '', $string);
-    $string = str_replace('[download]', '', $string);
-    $string = str_replace('at Unknown speed ETA Unknown ETA', '', $string);
-    $string = str_replace('[ffmpeg] Destination:', 'Extracting MP3..', $string);
-    $string = str_replace('/var/www/html/downloads/', 'Done', $string);
-    $string = str_replace('Deleting original file /var/www/html/downloads/ (pass -k to keep)', 'Done', $string);
-    return $string;
-}
-
-function get_percentage($string) {
-    $start = '[download]';
-    $end = ' of';
-    $output = strstr(substr($string, strpos($string, $start) + strlen($start)), $end, true);
-    return $output . "<br />";
 }
 
 function human_filesize($file, $decimals = 2) {

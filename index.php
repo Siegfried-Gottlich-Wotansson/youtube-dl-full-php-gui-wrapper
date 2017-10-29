@@ -33,13 +33,6 @@ require __DIR__ . '/config.php';
             ga('send', 'pageview');
 
         </script>
-        <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
-        <script>
-            (adsbygoogle = window.adsbygoogle || []).push({
-                google_ad_client: "ca-pub-6293250485535997",
-                enable_page_level_ads: true
-            });
-        </script>
     </head>
 
     <body id="page-top">
@@ -47,7 +40,7 @@ require __DIR__ . '/config.php';
         <!-- Navigation -->
         <nav class="navbar navbar-expand-lg navbar-light fixed-top" id="mainNav">
             <div class="container">
-                <a class="navbar-brand js-scroll-trigger" href="/"><?= APP_NAME ?></a>
+                <a class="navbar-brand js-scroll-trigger" href="http://<?= APP_URL ?>"><?= APP_NAME ?></a>
                 <a class="navbar-item" id="morecontent" href="#"><?= APP_VERSION ?></a>
 
             </div>
@@ -191,7 +184,13 @@ require __DIR__ . '/config.php';
 
         <!-- Plugin JavaScript -->
         <script async src="https://cdn.onesignal.com/sdks/OneSignalSDK.js"></script>
-
+		<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+		<script>
+		  (adsbygoogle = window.adsbygoogle || []).push({
+			google_ad_client: "ca-pub-6293250485535997",
+			enable_page_level_ads: true
+		  });
+		</script>
         <!-- Custom scripts for this template -->
         <script src="js/function.js"></script>
         <script>

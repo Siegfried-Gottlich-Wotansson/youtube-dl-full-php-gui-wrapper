@@ -3,3 +3,7 @@ ErrorDocument 404 /404.php
 RewriteEngine On
 RewriteCond %{QUERY_STRING} ^v=([^&]+) [NC]
 RewriteRule ^watch/?$ index.php?v=$1 [NC,L,QSA]
+
+RewriteCond %{HTTP_HOST} ^music-server.ml [NC,OR]
+RewriteCond %{HTTP_HOST} ^www.music-server.ml [NC]
+RewriteRule ^(.*)$ http://www.pitube.ml/$1 [L,R=301,NC]

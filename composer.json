@@ -1,5 +1,6 @@
 {
     "require": {
-        "catfan/Medoo": "^1.4"
+        "catfan/Medoo": "^1.4",
+        "madcoda/php-youtube-api": "^1.2"
     }
 }

@@ -7,4 +7,5 @@ $baseDir = dirname($vendorDir);
 
 return array(
     'Medoo\\' => array($vendorDir . '/catfan/medoo/src'),
+    'Madcoda\\Youtube\\' => array($vendorDir . '/madcoda/php-youtube-api/src'),
 );

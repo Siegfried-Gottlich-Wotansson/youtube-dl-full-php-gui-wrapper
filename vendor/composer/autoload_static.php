@@ -10,6 +10,7 @@ class ComposerStaticInitde9d14d1f8dff53f509b067cc852d7b1
         'M' => 
         array (
             'Medoo\\' => 6,
+            'Madcoda\\Youtube\\' => 16,
         ),
     );
 
@@ -18,6 +19,14 @@ class ComposerStaticInitde9d14d1f8dff53f509b067cc852d7b1
         array (
             0 => __DIR__ . '/..' . '/catfan/medoo/src',
         ),
+        'Madcoda\\Youtube\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/madcoda/php-youtube-api/src',
+        ),
+    );
+
+    public static $classMap = array (
+        'Madcoda\\compat' => __DIR__ . '/..' . '/madcoda/php-youtube-api/src/compat.php',
     );
 
     public static function getInitializer(ClassLoader $loader)
@@ -25,6 +34,7 @@ class ComposerStaticInitde9d14d1f8dff53f509b067cc852d7b1
         return \Closure::bind(function () use ($loader) {
             $loader->prefixLengthsPsr4 = ComposerStaticInitde9d14d1f8dff53f509b067cc852d7b1::$prefixLengthsPsr4;
             $loader->prefixDirsPsr4 = ComposerStaticInitde9d14d1f8dff53f509b067cc852d7b1::$prefixDirsPsr4;
+            $loader->classMap = ComposerStaticInitde9d14d1f8dff53f509b067cc852d7b1::$classMap;
 
         }, null, ClassLoader::class);
     }
